@@ -1,0 +1,15 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: flaskapp-service
+  namespace: flask
+
+spec:
+  rules:
+    - host: flask-app.southeastasia.cloudapp.azure.com
+      http:
+        paths:
+          - path: /crud
+            backend:
+              serviceName: flaskapi-service
+              servicePort: 80

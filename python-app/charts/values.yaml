@@ -1,0 +1,4 @@
+image:
+  flask: ghcr.io/mysticrenji/flask-mysql-k3s:v1
+  mysql:  mysql:latest
+hostName: flask-app.southeastasia.cloudapp.azure.com

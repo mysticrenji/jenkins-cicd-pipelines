@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapi-deployment
+  labels:
+    app: flaskapi
+  namespace: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flaskapi
+  template:
+    metadata:
+      labels:
+        app: flaskapi
+    spec:
+      containers:
+        - name: flaskapi
+          image: ghcr.io/mysticrenji/flask-mysql-k3s:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: DB_USER
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: DB_PASS
+            - name: DB
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: DB
+            - name: HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: HOST
