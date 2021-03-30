@@ -1,0 +1,81 @@
+pipeline {
+  environment {
+    DEPLOY = "${env.BRANCH_NAME == "main" || env.BRANCH_NAME == "develop" ? "true" : "false"}"
+
+  }
+  agent {
+    kubernetes {
+      label 'kubernetes'
+      defaultContainer 'jnlp'
+      yaml """
+            apiVersion: v1
+            kind: Pod
+            spec:
+            containers:
+            - name: docker
+                image: docker:1.11
+                command: ['cat']
+                tty: true
+                volumeMounts:
+                - name: dockersock
+                mountPath: /var/run/docker.sock
+            - name: terraform
+                image: iac-env:latest
+                command:
+                - cat
+                tty: true
+            volumes:
+            - name: dockersock
+                hostPath:
+                path: /var/run/docker.sock
+            """
+}
+  }
+
+ stages {
+        
+   stage('Terraform') {
+      steps {
+      container('terraform') {
+        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
+                         string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'),
+                         string(credentialsId: 'AWS_DEFAULT_REGION', variable: 'AWS_DEFAULT_REGION'),
+                         string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'AZURE_SUBSCRIPTION_ID'),
+                         string(credentialsId: 'AZURE_TENANT_ID', variable: 'AZURE_TENANT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_ID', variable: 'AZURE_CLIENT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'AZURE_CLIENT_SECRET')])
+        {
+        git url: "https://github.com/mysticrenji/flask-mysql-k3s.git",  branch: 'main'
+        sh '''
+        cd terraform
+        terraform fmt -check -recursive -list=true -diff
+        tflint
+        terraform init -input=false
+        terraform plan -out=tfplan -input=false
+        terraform validate
+        terraform graph | dot -Tpng > terraform-graph.png
+        archiveArtifacts artifacts: 'terraform-graph.png'
+           '''
+       }
+      }
+   }
+ }
+    stage("Publish Approval") {
+            when { expression { DEPLOY } }
+
+            steps {
+                input message: "Deploy these changes?"
+            }
+        }
+    stage('Ansible Test'){
+     steps {
+     sshagent(['Ansible']) {
+        sh '''
+           ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
+           '''
+       }
+     }
+   }
+   
+ }
+}
