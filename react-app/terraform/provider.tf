@@ -16,7 +16,7 @@ terraform {
   }
   backend "s3" {
     bucket = "terraform-bucket-jenkins"
-    key    = "statefile/azure-static.tfstate"
+    key    = "statefile/azure-static-apps.tfstate"
     region = "us-west-2"
   }
 }
