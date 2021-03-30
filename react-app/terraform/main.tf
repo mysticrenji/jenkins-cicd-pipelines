@@ -4,5 +4,5 @@ provider "azurerm" {
 }
 
 module "azurestatic-dev" {
-  source = "environments/dev"
+  source = "./environments/dev"
 }
