@@ -8,6 +8,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.0"
     }
+
+     azuread = {
+      source  = "hashicorp/azuread"
+      version = "1.4.0"
+    }
   }
   backend "s3" {
     bucket = "terraform-bucket-jenkins"
