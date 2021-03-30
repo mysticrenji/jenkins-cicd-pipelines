@@ -45,7 +45,8 @@ spec:
                          string(credentialsId: 'AZURE_CLIENT_ID', variable: 'AZURE_CLIENT_ID'),
                          string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'AZURE_CLIENT_SECRET')])
         {
-        git url: "https://github.com/mysticrenji/flask-mysql-k3s.git",  branch: 'main'
+        checkout scm
+        cd react-app/terraform
         sh '''
         cd terraform
         terraform fmt -check -recursive -list=true -diff
