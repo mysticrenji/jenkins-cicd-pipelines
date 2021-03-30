@@ -20,7 +20,7 @@ pipeline {
                 - name: dockersock
                 mountPath: /var/run/docker.sock
             - name: terraform
-                image: iac-env:latest
+                image: hashicorp/terraform:latest
                 command:
                 - cat
                 tty: true
