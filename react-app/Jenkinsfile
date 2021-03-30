@@ -45,7 +45,7 @@ spec:
                          string(credentialsId: 'AZURE_CLIENT_ID', variable: 'AZURE_CLIENT_ID'),
                          string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'AZURE_CLIENT_SECRET')])
         {
-        checkout scm
+        git url: "https://github.com/mysticrenji/jenkins-cicd-pipelines.git",  branch: 'main'
         cd react-app/terraform
         sh '''
         cd terraform
