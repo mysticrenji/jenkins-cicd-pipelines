@@ -10,7 +10,7 @@ RUN AZ_REPO=$(lsb_release -cs) && echo "deb [arch=amd64] https://packages.micros
 RUN apt update && apt install -y azure-cli
 
 # Install Terraform
-ARG TERRAFORM_VERSION="0.14.7"
+ARG TERRAFORM_VERSION="0.13.0"
 RUN cd /tmp && \
     wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin && \
