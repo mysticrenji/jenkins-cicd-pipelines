@@ -44,8 +44,9 @@ spec:
          cd react-app/azure-static
          npm install
          npm run build
+         zip zipFile: 'static-website.zip', archive: false, dir: 'build'
             '''
-         archiveArtifacts artifacts: 'build/*'
+         archiveArtifacts artifacts: 'react-app/azure-static/static-website.zip'
 
        }
      }
