@@ -39,7 +39,7 @@ spec:
    
    stage('Build') {
      steps {
-       container ('node') {
+       container ('nodejs') {
          sh '''
          cd react-app/azure-static
          npm install
