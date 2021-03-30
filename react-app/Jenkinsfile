@@ -20,7 +20,7 @@ spec:
     - name: dockersock
       mountPath: /var/run/docker.sock
   - name: terraform
-    image: zenika/terraform-azure-cli:latest
+    image: ghcr.io/mysticrenji/terraform-azurecli:v1
     command:
       - cat
     tty: true
@@ -48,14 +48,16 @@ spec:
         
         sh '''
         cd react-app/terraform
-        terraform fmt -check -recursive -list=true -diff
-        tflint
-        terraform init -input=false
-        terraform plan -out=tfplan -input=false
-        terraform validate
-        terraform graph | dot -Tpng > terraform-graph.png
-        archiveArtifacts artifacts: 'terraform-graph.png'
+        ls
+
            '''
+        // terraform fmt -check -recursive -list=true -diff
+        // tflint
+        // terraform init -input=false
+        // terraform plan -out=tfplan -input=false
+        // terraform validate
+        // terraform graph | dot -Tpng > terraform-graph.png
+        // archiveArtifacts artifacts: 'terraform-graph.png'
        }
       }
    }
