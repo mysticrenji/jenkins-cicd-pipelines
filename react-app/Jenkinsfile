@@ -49,8 +49,8 @@ spec:
         sh '''
         cd react-app/terraform
         terraform fmt 
-        terraform init -input=false
-        terraform plan -out=tfplan -input=false
+        terraform init
+        terraform plan 
         terraform validate
         terraform graph | dot -Tpng > terraform-graph.png
         archiveArtifacts artifacts: 'terraform-graph.png'
