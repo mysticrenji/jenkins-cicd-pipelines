@@ -20,7 +20,7 @@ spec:
     - name: dockersock
       mountPath: /var/run/docker.sock
   - name: terraform
-    image: hashicorp/terraform:latest
+    image: zenika/terraform-azure-cli:latest
     command:
       - cat
     tty: true
