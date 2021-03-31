@@ -46,8 +46,8 @@ spec:
          npm run build
             '''
          script{
-                    zip zipFile: 'react-app/azure-static/static-website.zip', archive: false, dir: 'build'
-                    archiveArtifacts artifacts: 'react-app/azure-static/static-website.zip'
+                    zip zipFile: 'static-website.zip', archive: false, dir: 'react-app/azure-static/build'
+                    archiveArtifacts artifacts: 'static-website.zip'
               }
          
 
