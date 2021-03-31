@@ -49,8 +49,6 @@ spec:
                     zip zipFile: 'static-website.zip', archive: false, dir: 'react-app/azure-static/build'
                     archiveArtifacts artifacts: 'static-website.zip'
               }
-         
-
        }
      }
    }
