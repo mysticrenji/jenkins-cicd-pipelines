@@ -106,7 +106,7 @@ spec:
          //     '''
               //ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
               //ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
-       }
+       
        }
      }
    }
