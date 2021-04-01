@@ -40,7 +40,7 @@ spec:
   }
 
  stages {
-   
+   /*
    stage('Build') {
      steps {
        container ('nodejs') {
@@ -90,7 +90,7 @@ spec:
     //             input message: "Deploy these changes?"
     //         }
     // }
-
+*/
     stage('Ansible Test'){
      steps {
        container('ansible') {
@@ -98,7 +98,8 @@ spec:
          sshagent(['Ansible']) {
          sh  '''
          cd react-app/ansible
-         ansible -m ping -i inventory web
+         ls -al ~/.ssh
+         ansible -m ping -i inventory web -u azureuser
          '''
          }
          //ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
