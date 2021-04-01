@@ -97,7 +97,6 @@ spec:
 
          copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
          unzip zipFile: 'static-website.zip', dir: './Artifact'
-         ls ./Artifact
         // checkout scm
         // sshagent(['Ansible']) {
         //     sh '''
