@@ -91,6 +91,7 @@ spec:
     //         }
     // }
 */
+
     stage('Ansible Test'){
      steps {
        container('ansible') {
@@ -99,6 +100,7 @@ spec:
          sh  '''
          cd react-app/ansible
          ls -al ~/.ssh
+         ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253 uname -a
          ansible -m ping -i inventory web -u azureuser
          '''
          }
