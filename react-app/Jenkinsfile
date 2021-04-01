@@ -94,13 +94,18 @@ spec:
     stage('Ansible Test'){
      steps {
        container('ansible') {
-         checkout scm
-         sshagent(['Ansible']) {
-             sh '''
-              cd react-app/ansible
-              ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
-              '''
+
+         copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
+         unzip zipFile: 'static-website.zip', dir: './Artifact'
+         ls ./Artifact
+        // checkout scm
+        // sshagent(['Ansible']) {
+        //     sh '''
+         //     cd react-app/ansible
+              
+         //     '''
               //ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
+              //ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
        }
        }
      }
