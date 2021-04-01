@@ -40,7 +40,7 @@ spec:
   }
 
  stages {
-   /*
+   
    stage('Build') {
      steps {
        container ('nodejs') {
@@ -90,7 +90,7 @@ spec:
     //             input message: "Deploy these changes?"
     //         }
     // }
-*/
+
 
     stage('Ansible Test'){
      steps {
@@ -102,24 +102,11 @@ spec:
          ansible --version
          ansible-playbook -i inventory nginx.yaml  --ssh-common-args='-o StrictHostKeyChecking=no'
          '''
-       }   //      ssh -vvv -o StrictHostKeyChecking=no azureuser@13.67.118.253 uptime
-        // ansible -m ping -i inventory web -u azureuser
-         //ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
-   //      copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
+       }   
+    //      copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
     //     unzip zipFile: 'static-website.zip', dir: './Artifact'
-    //     sh '''
-    //     ls ./Artifact
-    //        '''
-       /*
-        checkout scm
-        sshagent(['Ansible']) {
-             sh '''
-             cd react-app/ansible
-             ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
-              '''
-              //ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
-              //ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
-       */
+   
+
        }
      }
    }
