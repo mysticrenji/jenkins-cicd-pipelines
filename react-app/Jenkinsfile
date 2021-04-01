@@ -94,10 +94,13 @@ spec:
     stage('Ansible Test'){
      steps {
        container('ansible') {
-        sshagent(['Ansible']) {
+         checkout scm
+         sshagent(['Ansible']) {
              sh '''
-              ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
+              cd react-app/ansible
+              ansible-playbook -i -K ansible.cfg nginx.yml -b --ssh-common-args='-o StrictHostKeyChecking=no'
               '''
+              //ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
        }
        }
      }
