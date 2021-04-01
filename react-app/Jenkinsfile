@@ -93,9 +93,9 @@ spec:
 
     stage('Ansible Test'){
      steps {
-       container(ansible) {
+       container('ansible') {
       //  sshagent(['Ansible']) {
-            sh '''
+             sh '''
               ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
               '''
      //  }
