@@ -97,10 +97,13 @@ spec:
        container('ansible') {
          checkout scm
          sshagent(['Ansible']) {
+        
          sh  '''
          cd react-app/ansible
          ls -al ~/.ssh
-         ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253 uptime
+         echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+         ls -al $SSH_AUTH_SOCK || true
+         ssh -vvv -o StrictHostKeyChecking=no azureuser@13.67.118.253 uptime
          ansible -m ping -i inventory web -u azureuser
          '''
          }
