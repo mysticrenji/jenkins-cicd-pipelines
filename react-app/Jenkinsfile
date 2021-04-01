@@ -98,7 +98,7 @@ spec:
          sshagent(['Ansible']) {
              sh '''
               cd react-app/ansible
-              ansible-playbook -i -K ansible.cfg nginx.yml -b --ssh-common-args='-o StrictHostKeyChecking=no'
+              ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
               '''
               //ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
        }
