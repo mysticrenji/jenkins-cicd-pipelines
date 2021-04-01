@@ -27,6 +27,10 @@ spec:
     image: node
     command: ['cat']
     tty: true
+  - name: ansible
+    image: ghcr.io/mysticrenji/ansible:v1
+    command: ['cat']
+    tty: true
   volumes:
   - name: dockersock
     hostPath:
@@ -52,8 +56,7 @@ spec:
        }
      }
    }
- 
-        
+     
    stage('Terraform') {
       steps {
       container('terraform') {
@@ -81,19 +84,21 @@ spec:
       }
    }
  }
-    stage("Publish Approval") {
-            when { expression { DEPLOY } }
+    // stage("Publish Approval") {
+    //         when { expression { DEPLOY } }
+    //         steps {
+    //             input message: "Deploy these changes?"
+    //         }
+    // }
 
-            steps {
-                input message: "Deploy these changes?"
-            }
-        }
     stage('Ansible Test'){
      steps {
-     sshagent(['Ansible']) {
-        sh '''
-           ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
-           '''
+       container(ansible) {
+      //  sshagent(['Ansible']) {
+            sh '''
+              ssh -o StrictHostKeyChecking=no -l azureuser 13.67.118.253
+              '''
+     //  }
        }
      }
    }
