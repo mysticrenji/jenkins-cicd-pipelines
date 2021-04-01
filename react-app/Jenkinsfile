@@ -100,10 +100,10 @@ spec:
          sh  '''
          cd react-app/ansible
          ansible --version
-         ssh -vvv -o StrictHostKeyChecking=no azureuser@13.67.118.253 uptime
-         ansible -m ping -i inventory web -u azureuser
+         ansible-playbook -i inventory nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
          '''
-       }
+       }   //      ssh -vvv -o StrictHostKeyChecking=no azureuser@13.67.118.253 uptime
+        // ansible -m ping -i inventory web -u azureuser
          //ansible-playbook -i 13.67.118.253 nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
    //      copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
     //     unzip zipFile: 'static-website.zip', dir: './Artifact'
