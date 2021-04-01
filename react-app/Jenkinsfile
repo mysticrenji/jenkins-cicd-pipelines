@@ -100,7 +100,7 @@ spec:
          sh  '''
          cd react-app/ansible
          ansible --version
-         ansible-playbook -i inventory nginx.yml -b  --ssh-common-args='-o StrictHostKeyChecking=no'
+         ansible-playbook -i inventory nginx.yml  --ssh-common-args='-o StrictHostKeyChecking=no'
          '''
        }   //      ssh -vvv -o StrictHostKeyChecking=no azureuser@13.67.118.253 uptime
         // ansible -m ping -i inventory web -u azureuser

@@ -1,2 +1,2 @@
 [web]
-13.67.118.253
+13.67.118.253 ansible_user=azureuser
