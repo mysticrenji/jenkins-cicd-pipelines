@@ -1,6 +1,8 @@
 ---
-- hosts: all
+- hosts: localhost
   become: true
+  collections:
+  - azure.azcollection
   tasks:
     - name: Create container foo and upload a file
       azure_rm_storageblob:
