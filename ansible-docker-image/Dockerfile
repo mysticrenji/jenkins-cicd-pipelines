@@ -4,8 +4,6 @@ COPY requirements.txt .
 RUN pip install pip --upgrade && \
     pip install -r requirements.txt
 
-RUN apt-get update -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    sshpass
+RUN apk add --no-cache bash openssh sshpass
 
 CMD ["bash"]
