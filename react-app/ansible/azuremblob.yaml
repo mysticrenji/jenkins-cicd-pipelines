@@ -1,6 +1,6 @@
 ---
-- hosts: localhost
-  become: true
+- hosts: all
+  become: false
   collections:
   - azure.azcollection
   tasks:
