@@ -20,7 +20,7 @@ spec:
     - name: dockersock
       mountPath: /var/run/docker.sock
   - name: terraform
-    image: ghcr.io/mysticrenji/terraform-azurecli:v5
+    image: ghcr.io/mysticrenji/terraform-azurecli:v6
     command: ['cat']
     tty: true
   - name: nodejs
@@ -28,7 +28,7 @@ spec:
     command: ['cat']
     tty: true
   - name: ansible
-    image: ghcr.io/mysticrenji/ansible:v1
+    image: ghcr.io/mysticrenji/ansible:v2
     command: ['cat']
     tty: true
   volumes:
