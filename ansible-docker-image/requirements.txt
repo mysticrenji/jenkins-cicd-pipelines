@@ -27,3 +27,4 @@ msrestazure==0.4.31
 azure-keyvault==1.0.0a1
 azure-graphrbac==0.40.0
 ansible==2.9
+azure-mgmt-servicebus
