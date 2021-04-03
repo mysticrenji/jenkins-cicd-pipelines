@@ -1,4 +1,4 @@
-FROM python:3.8-buster
+FROM mcr.microsoft.com/azure-cli
 LABEL org.opencontainers.image.source https://github.com/mysticrenji/jenkins-cicd-pipelines
 COPY requirements.txt .
 RUN pip install pip --upgrade && \
