@@ -1,2 +1,5 @@
 [web]
 13.67.118.253 ansible_user=azureuser
+
+[web:vars]
+ansible_python_interpreter=/usr/local/bin/python3
