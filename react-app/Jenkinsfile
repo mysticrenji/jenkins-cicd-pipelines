@@ -95,12 +95,17 @@ spec:
     stage('Ansible Test'){
      steps {
        container('ansible') {
+       withCredentials([ string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'AZURE_SUBSCRIPTION_ID'),
+                         string(credentialsId: 'AZURE_TENANT_ID', variable: 'AZURE_TENANT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_ID', variable: 'AZURE_CLIENT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'AZURE_CLIENT_SECRET')])
+        {
         checkout scm
         sshagent(['ansiblev1']) {
          sh  '''
          cd react-app/ansible
          ansible --version
-         ansible-playbook  nginx.yaml
+         ansible-playbook  azuremblob.yaml -vvv
          '''
        }   
      //      copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
@@ -108,6 +113,7 @@ spec:
     //ansible-playbook -i inventory nginx.yaml  --ssh-common-args='-o StrictHostKeyChecking=no'
    
 
+       }
        }
      }
    }
