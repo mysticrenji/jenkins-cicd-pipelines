@@ -28,7 +28,7 @@ spec:
     command: ['cat']
     tty: true
   - name: ansible
-    image: ghcr.io/mysticrenji/ansible:v9
+    image: ghcr.io/mysticrenji/ansible:v10
     command: ['cat']
     tty: true
   volumes:
