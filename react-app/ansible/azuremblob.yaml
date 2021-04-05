@@ -11,4 +11,4 @@
         container: '$web'
         blob: 'cloud.jpg'
         src: './cloud.jpg'
-        content_type: 'application/image'
+        content_type: 'multipart/form-data'
