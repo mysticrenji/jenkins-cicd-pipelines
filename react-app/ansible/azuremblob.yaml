@@ -9,5 +9,6 @@
         resource_group: terraform-static-apps
         storage_account_name: staticapps30032021
         container: '$web'
-        src: './nginx.yaml'
-        content_type: ' application/x-yaml'
+        blob: 'cloud.jpg'
+        src: './cloud.jpg'
+        content_type: 'application/image'
