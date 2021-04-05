@@ -1,6 +1,1 @@
-packaging
-requests[security]
-ansible==2.8
-azure==4.0
-azure-mgmt-monitor
-azure-storage==0.36.0
+ansible[azure]==2.9
