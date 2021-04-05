@@ -72,7 +72,8 @@ spec:
         
         sh '''
          cd react-app/terraform
-         terraform fmt 
+         terraform fmt
+         terraform fmt -check -recursive -list=true -diff
            '''
         // terraform fmt -check -recursive -list=true -diff
         // tflint
