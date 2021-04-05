@@ -9,9 +9,6 @@
         resource_group: terraform-static-apps
         storage_account_name: staticapps30032021
         container: '$web'
-        batch_upload_dst: '.'
-        batch_upload_src: './inventory/'
-        state: present
-       # blob: 'cloud.jpg'
-       # src: './cloud.jpg'
-       # content_type: 'multipart/form-data'
+        blob: 'cloud.jpg'
+        src: './cloud.jpg'
+        content_type: 'multipart/form-data'
