@@ -9,7 +9,7 @@
         resource_group: terraform-static-apps
         storage_account_name: staticapps30032021
         container: '$web'
-        batch_upload_dst: '$web/'
+        batch_upload_dst: '/'
         batch_upload_src: '../azure-static/public'
        # blob: 'cloud.jpg'
        # src: './cloud.jpg'
