@@ -93,7 +93,7 @@ spec:
     // }
 
 
-    stage('Ansible Test'){
+    stage('Ansible Deploy'){
      steps {
        container('ansible') {
        withCredentials([ string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'AZURE_SUBSCRIPTION_ID'),
