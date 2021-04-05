@@ -121,7 +121,7 @@ spec:
    
  }
  post{
-   Always {
+   always {
      cleanWs()
    }
  }
