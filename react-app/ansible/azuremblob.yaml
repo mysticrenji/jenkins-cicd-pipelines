@@ -9,5 +9,5 @@
         resource_group: terraform-static-apps
         storage_account_name: staticapps30032021
         container: '$web'
-        src: ./nginx.yaml
+        src: './nginx.yaml'
         content_type: 'multipart/text'
