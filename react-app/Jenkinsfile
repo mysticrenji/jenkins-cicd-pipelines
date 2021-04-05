@@ -29,6 +29,7 @@ spec:
     tty: true
   - name: ansible
     image: ghcr.io/mysticrenji/ansible:v12
+    imagePullPolicy: Always
     command: ['cat']
     tty: true
   volumes:
