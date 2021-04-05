@@ -14,9 +14,11 @@ terraform {
       version = "1.4.0"
     }
   }
-  backend "s3" {
-    bucket = "terraform-bucket-jenkins"
-    key    = "statefile/azure-static-apps.tfstate"
-    region = "us-west-2"
+  backend "azurerm" {
+    resource_group_name   = "rg-experiments-sea"
+    storage_account_name  = "terraformblobstoragedev"
+    container_name        = "terraform"
+    key                   = "jenkins-bucket.tfstate"
+    
   }
 }
