@@ -120,10 +120,6 @@ spec:
    }
    
  }
- post{
-   always {
-     cleanWs()
-   }
- }
+
 
 }
