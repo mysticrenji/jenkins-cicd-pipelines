@@ -73,8 +73,6 @@ spec:
          terraform fmt
          terraform init -input=false
          terraform validate
-         terraform graph | dot -Tpng > terraform-graph.png
-         archiveArtifacts artifacts: 'terraform-graph.png'
            '''
         // terraform fmt -check -recursive -list=true -diff
         // tflint
