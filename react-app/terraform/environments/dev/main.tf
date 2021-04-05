@@ -3,5 +3,4 @@ module "azurestatic-dev" {
   location           = "UK South"
   product            = "staticappsdev"
   storagename         = "staticapps30032021"
- 
 }

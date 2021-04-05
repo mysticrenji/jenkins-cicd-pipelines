@@ -19,6 +19,5 @@ terraform {
     storage_account_name  = "terraformblobstoragedev"
     container_name        = "terraform"
     key                   = "jenkins-bucket.tfstate"
-    
   }
 }
