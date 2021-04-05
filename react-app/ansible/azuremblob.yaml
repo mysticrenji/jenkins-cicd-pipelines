@@ -9,7 +9,8 @@
         resource_group: terraform-static-apps
         storage_account_name: staticapps30032021
         container: '$web'
-        src: '../azure-static/public'
+        src: '../azure-static/public/*'
+        state: present
        # blob: 'cloud.jpg'
        # src: './cloud.jpg'
        # content_type: 'multipart/form-data'
