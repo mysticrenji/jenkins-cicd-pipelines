@@ -1,0 +1,127 @@
+pipeline {
+  environment {
+    DEPLOY = "${env.BRANCH_NAME == "main" || env.BRANCH_NAME == "develop" ? "true" : "false"}"
+
+  }
+  agent {
+    kubernetes {
+      label 'kubernetes'
+      defaultContainer 'jnlp'
+      yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:1.11
+    command: ['cat']
+    tty: true
+    volumeMounts:
+    - name: dockersock
+      mountPath: /var/run/docker.sock
+  - name: terraform
+    image: ghcr.io/mysticrenji/terraform-azurecli:v6
+    command: ['cat']
+    tty: true
+  - name: maven
+    image: maven:3.8-openjdk-11
+    command: ['cat']
+    tty: true
+  - name: ansible
+    image: ghcr.io/mysticrenji/ansible:v12
+    imagePullPolicy: Always
+    command: ['cat']
+    tty: true
+  volumes:
+  - name: dockersock
+    hostPath:
+      path: /var/run/docker.sock
+"""
+}
+  }
+
+ stages {
+   
+   stage('Build') {
+     steps {
+       container ('maven') {
+         withCredentials([string(credentialsId: 'SONARURL', variable: 'SONARURL'),
+                         string(credentialsId: 'TOKEN', variable: 'TOKEN')])
+                         {
+
+                        sh '''
+                        cd java-app/spring-boot-docker
+                        mvn clean install sonar:sonar -Dsonar.projectKey=groupId:artifactId -Dsonar.host.url=$SONARURL -Dsonar.login=$TOKEN -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes
+                            '''
+                        archiveArtifacts artifacts: '**/**/target/*.jar'
+                         }
+       }
+     }
+   }
+   /*
+     
+   stage('Terraform') {
+      steps {
+      container('terraform') {
+        withCredentials([string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'ARM_SUBSCRIPTION_ID'),
+                         string(credentialsId: 'AZURE_TENANT_ID', variable: 'ARM_TENANT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_ID', variable: 'ARM_CLIENT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'ARM_CLIENT_SECRET')])
+                         
+        {
+        
+        sh '''
+         cd react-app/terraform
+         terraform fmt
+         terraform init -input=false
+         terraform validate
+           '''
+        // terraform fmt -check -recursive -list=true -diff
+        // tflint
+        // terraform init -input=false
+        // terraform plan -out=tfplan -input=false
+        // terraform validate
+        // terraform graph | dot -Tpng > terraform-graph.png
+        // archiveArtifacts artifacts: 'terraform-graph.png'
+       }
+      }
+   }
+ }
+    // stage("Publish Approval") {
+    //         when { expression { DEPLOY } }
+    //         steps {
+    //             input message: "Deploy these changes?"
+    //         }
+    // }
+
+
+    stage('Ansible Deploy'){
+     steps {
+       container('ansible') {
+       withCredentials([ string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'AZURE_SUBSCRIPTION_ID'),
+                         string(credentialsId: 'AZURE_TENANT_ID', variable: 'AZURE_TENANT'),
+                         string(credentialsId: 'AZURE_CLIENT_ID', variable: 'AZURE_CLIENT_ID'),
+                         string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'AZURE_SECRET')])
+        {
+        checkout scm
+        sshagent(['ansiblev1']) {
+         sh  '''
+         cd react-app/ansible
+         ansible --version
+         ansible-playbook  azuremblob.yaml -vvv
+         '''
+       }   
+     //      copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
+    //     unzip zipFile: 'static-website.zip', dir: './Artifact'
+    //ansible-playbook -i inventory nginx.yaml  --ssh-common-args='-o StrictHostKeyChecking=no'
+   
+
+       }
+       }
+     }
+   }
+   */
+ }
+
+
+}
