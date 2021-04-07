@@ -78,7 +78,7 @@ spec:
  }
    
      
-   stage('Terraform') {
+   stage('Terraform Deploy') {
       steps {
       container('terraform') {
         withCredentials([string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'ARM_SUBSCRIPTION_ID'),
@@ -95,7 +95,7 @@ spec:
          terraform init -input=false
          terraform validate
          terraform plan -var dockerregistry="" -var dockerusername="" -var dockerserverpassword=""
-         terraform apply -var dockerregistry="" -var dockerusername="" -var dockerserverpassword=""
+         terraform apply -var dockerregistry="" -var dockerusername="" -var dockerserverpassword="" -auto-approve
            '''
         // terraform fmt -check -recursive -list=true -diff
         // tflint
