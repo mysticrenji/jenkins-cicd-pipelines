@@ -69,6 +69,7 @@ spec:
         sh '''
         cd java-app/spring-boot-docker
         docker login -u $USERNAME -p $PASSWORD ghcr.io
+        docker build -t ghcr.io/mysticrenji/spring-boot:v1 .
         docker push ghcr.io/mysticrenji/spring-boot:v1
            '''
         }
