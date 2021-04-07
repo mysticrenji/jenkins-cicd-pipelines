@@ -51,7 +51,7 @@ spec:
 
                         sh '''
                         cd java-app/spring-boot-docker
-                        mvn clean install sonar:sonar -Dsonar.projectKey=groupId:artifactId -Dsonar.host.url=$SONARURL -Dsonar.login=$TOKEN -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes
+                        mvn clean package sonar:sonar -Dsonar.projectKey=groupId:artifactId -Dsonar.host.url=$SONARURL -Dsonar.login=$TOKEN -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes
                             '''
                          }
                          //archiveArtifacts artifacts: '**/**/target/*.jar'
