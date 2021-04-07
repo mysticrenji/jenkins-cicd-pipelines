@@ -66,7 +66,7 @@ spec:
         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'],
         [string(credentialsId: 'GITHUBCR', variable: 'GITHUBCR')]])
         {
-        #//git url: "https://github.com/mysticrenji/flask-mysql-k3s.git",  branch: 'main'
+        //git url: "https://github.com/mysticrenji/flask-mysql-k3s.git",  branch: 'main'
         sh '''
         cd java-app/spring-boot-docker
         docker login -u $USERNAME -p $PASSWORD $GITHUBCR
