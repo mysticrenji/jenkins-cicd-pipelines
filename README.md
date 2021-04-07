@@ -4,4 +4,5 @@
  ### Types
    1. Python App deployment to Kubernetes via Helm Charts
    2. React Static App deployment to Azure Blob Storage
+   3. Java Spring Boot App deployment to Azure App Service with Container enabled
    
