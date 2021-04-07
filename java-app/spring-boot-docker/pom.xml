@@ -8,9 +8,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.pratik.users</groupId>
-	<artifactId>spring-boot</artifactId>
+	<artifactId>usersignup</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot</name>
+	<name>usersignup</name>
 	<description>Demo project for Spring Boot Container</description>
 
 	<properties>
@@ -46,31 +46,16 @@
 	<build>
 		<plugins>
 			<plugin>
-					<groupId>io.openliberty.boost</groupId>
-					<artifactId>boost-maven-plugin</artifactId>
-					<version>0.1</version>
-					<configuration>
-					  <repository>ghcr.io/mysticrenji/${project.artifactId}:latest</repository>
-					</configuration>
-					<executions>
-					  <execution>
-						<goals>
-						  <goal>docker-build</goal>
-						  <goal>docker-push</goal>
-						</goals>
-					  </execution>
-					</executions>
-				
-				<!-- <groupId>org.springframework.boot</groupId>
+				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>docker.io/pratikdas/${project.artifactId}:v1</name>
+						<name>ghcr.io/mysticrenji/spring-boot:v1</name>
 					</image>
 					<layers>
 						<enabled>true</enabled>
 					</layers>
-				</configuration> -->
+				</configuration>
 			</plugin>
 			<plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
