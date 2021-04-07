@@ -76,7 +76,7 @@ spec:
       }
    }
  }
-   /*
+   
      
    stage('Terraform') {
       steps {
@@ -84,15 +84,18 @@ spec:
         withCredentials([string(credentialsId: 'AZURE_SUBSCRIPTION_ID', variable: 'ARM_SUBSCRIPTION_ID'),
                          string(credentialsId: 'AZURE_TENANT_ID', variable: 'ARM_TENANT_ID'),
                          string(credentialsId: 'AZURE_CLIENT_ID', variable: 'ARM_CLIENT_ID'),
-                         string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'ARM_CLIENT_SECRET')])
+                         string(credentialsId: 'AZURE_CLIENT_SECRET', variable: 'ARM_CLIENT_SECRET')
+                         ])
                          
         {
         
         sh '''
-         cd react-app/terraform
+         cd spring-boot-docker/terraform
          terraform fmt
          terraform init -input=false
          terraform validate
+         terraform plan -var dockerregistry="" -var dockerusername="" -var dockerserverpassword=""
+         terraform apply -var dockerregistry="" -var dockerusername="" -var dockerserverpassword=""
            '''
         // terraform fmt -check -recursive -list=true -diff
         // tflint
@@ -105,6 +108,7 @@ spec:
       }
    }
  }
+ /*
     // stage("Publish Approval") {
     //         when { expression { DEPLOY } }
     //         steps {
