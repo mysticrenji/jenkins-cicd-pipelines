@@ -50,7 +50,7 @@ resource "azurerm_app_service" "dockerapp" {
 
   # Configure Docker Image to load on start
   site_config {
-    linux_fx_version = "DOCKER|appsvcsample/static-site:latest"
+    linux_fx_version = "DOCKER|ghcr.io/mysticrenji/spring-boot:v1"
     always_on        = "true"
   }
 
