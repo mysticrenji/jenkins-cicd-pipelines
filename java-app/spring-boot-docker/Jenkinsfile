@@ -62,9 +62,9 @@ spec:
    stage('Push Image to Container Registry') {
       steps {
       container('docker') {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'GitHub',
+        withCredentials([$class: 'UsernamePasswordMultiBinding', credentialsId:'GitHub',
         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'],
-        [string(credentialsId: 'GITHUBCR', variable: 'GITHUBCR')]])
+        [string(credentialsId: 'GITHUBCR', variable: 'GITHUBCR')])
         {
         //git url: "https://github.com/mysticrenji/flask-mysql-k3s.git",  branch: 'main'
         sh '''
