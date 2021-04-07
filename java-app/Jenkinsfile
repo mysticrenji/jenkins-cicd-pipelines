@@ -90,7 +90,7 @@ spec:
         {
         
         sh '''
-         cd java-app/spring-boot-docker/terraform
+         cd java-app/terraform
          terraform fmt
          terraform init -input=false
          terraform validate
