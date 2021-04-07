@@ -59,7 +59,7 @@ spec:
      }
    }
 
-   stage('Build Docker image and Push to Container Registry') {
+   stage('Push Image to Container Registry') {
       steps {
       container('docker') {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'GitHub',
@@ -70,9 +70,7 @@ spec:
         sh '''
         cd java-app/spring-boot-docker
         docker login -u $USERNAME -p $PASSWORD $GITHUBCR
-        mvn clean package
-        mvn boost:docker-build
-        mvn boost:docker-push
+        docker push ghcr.io/mysticrenji/spring-boot:v1
            '''
         }
       }
