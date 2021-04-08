@@ -1,7 +1,7 @@
 ## Deploy Static App to Azure using Jenkins
 This project contains a static app developed using React and deployed to Azure static apps tapping Jenkins along with Ansible
 
-![Architecture](react-app/images/AzureStaticApps-CICD.png?raw=true "Pipelines")
+![Architecture](./images/AzureStaticApps-CICD.png?raw=true "Pipelines")
 
 
 ### Prequisites
