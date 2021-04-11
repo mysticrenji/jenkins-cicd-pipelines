@@ -32,6 +32,11 @@ spec:
     imagePullPolicy: Always
     command: ['cat']
     tty: true
+  - name: snyk
+    image: snyk/snyk-cli:npm
+    imagePullPolicy: Always
+    command: ['cat']
+    tty: true    
   volumes:
   - name: dockersock
     hostPath:
