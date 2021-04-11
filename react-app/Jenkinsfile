@@ -48,7 +48,7 @@ spec:
  stages {
 
       stage('Check for Vulnerabilities') {
-     steps {
+      steps {
        container ('snyk') {
         withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')])
        {
@@ -95,7 +95,7 @@ spec:
          terraform init -input=false
          terraform validate
          terraform plan
-         terraform applu -auto-approve
+         terraform apply -auto-approve
            '''
         // terraform fmt -check -recursive -list=true -diff
         // tflint
