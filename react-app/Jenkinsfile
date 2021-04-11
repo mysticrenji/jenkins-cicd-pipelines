@@ -94,6 +94,8 @@ spec:
          terraform fmt
          terraform init -input=false
          terraform validate
+         terraform plan
+         terraform applu -auto-approve
            '''
         // terraform fmt -check -recursive -list=true -diff
         // tflint
