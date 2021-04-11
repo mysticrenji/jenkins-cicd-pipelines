@@ -109,10 +109,7 @@ spec:
          ansible-playbook  azuremblob.yaml -vvv
          '''
        }   
-     //      copyArtifacts filter: 'static-website.zip', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')
-    //     unzip zipFile: 'static-website.zip', dir: './Artifact'
-    //ansible-playbook -i inventory nginx.yaml  --ssh-common-args='-o StrictHostKeyChecking=no'
-   
+  
 
        }
        }
