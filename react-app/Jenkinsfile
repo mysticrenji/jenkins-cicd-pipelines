@@ -41,6 +41,22 @@ spec:
   }
 
  stages {
+
+      stage('Check for Vulnerabilities') {
+     steps {
+       container ('snyk') {
+        withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN'))])
+       {
+         sh '''
+         cd react-app/azure-static
+         snyk config set api=$SNYK_TOKEN
+         snyk monitor
+            '''
+       }
+       }
+     }
+      }
+      
    
    stage('Build') {
      steps {
