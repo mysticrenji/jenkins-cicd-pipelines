@@ -1,1 +1,1 @@
-ansible[azure]==2.9
+ansible[azure]==2.10.7
