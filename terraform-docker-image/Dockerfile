@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:24.04
 LABEL org.opencontainers.image.source https://github.com/mysticrenji/jenkins-cicd-pipelines
 RUN apt update && apt install -y curl jq wget unzip ca-certificates gnupg lsb-release apt-transport-https 
 
