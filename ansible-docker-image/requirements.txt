@@ -1,1 +1,1 @@
-ansible[azure]==12.2.0
+ansible[azure]==12.3.0
